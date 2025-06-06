@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jai Cinema Bookings</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+</head>
+<body>
+  <h1 class="animated-heading">🎬 Jai Cinema Bookings</h1>
+  <div id="theater-list"></div>
+
+  <footer class="footer">
+    <p class="footer-title">Jai Cinema Bookings</p>
+    <p>Customer Service: <a href="mailto:support@jaicinemabookings.com">support@jaicinemabookings.com</a> | +91-555-123-4567</p>
+    <p>© 2025 Jai Cinema Bookings. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Redirect to login.html if not logged in
+    if (!localStorage.getItem("isLoggedIn")) {
+      window.location.href = "login.html";
+    }
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seat Booking - Jai Cinema Bookings</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+</head>
+<body>
+  <h1 class="animated-heading" id="booking-heading">🎟️ Jai Cinema Bookings</h1>
+  <div class="seat-container">
+    <div id="seat-grid"></div>
+    <div id="price-display">Click a seat to see its price</div>
+  </div>
+
+  <footer class="footer">
+    <p class="footer-title">Jai Cinema Bookings</p>
+    <p>Customer Service: <a href="mailto:support@jaicinemabookings.com">support@jaicinemabookings.com</a> | +91-555-123-4567</p>
+    <p>© 2025 Jai Cinema Bookings. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Get theater name from URL query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const theaterName = urlParams.get("theater") || "Theater";
+    document.getElementById("booking-heading").textContent = `🎟️ Seat Booking for ${theaterName}`;
+
+    // Seat pricing by row
+    const prices = {
+      1: 300,
+      2: 250,
+      3: 200,
+      4: 150,
+      5: 100
+    };
+
+    // Generate 50 seats (5 rows x 10 columns)
+    const seatGrid = document.getElementById("seat-grid");
+    for (let row = 1; row <= 5; row++) {
+      for (let col = 1; col <= 10; col++) {
+        const seat = document.createElement("button");
+        seat.className = "seat";
+        seat.textContent = `${row}-${col}`;
+        seat.dataset.row = row;
+        seat.dataset.col = col;
+        seat.addEventListener("click", function() {
+          const price = prices[row];
+          document.getElementById("price-display").textContent = `Seat ${row}-${col}: ₹${price}`;
+          // Highlight selected seat
+          document.querySelectorAll(".seat").forEach(s => s.classList.remove("selected"));
+          seat.classList.add("selected");
+        });
+        seatGrid.appendChild(seat);
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Jai Cinema Bookings</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+</head>
+<body class="login-body">
+  <h1 class="glowing-heading">🎟️ Login to Jai Cinema Bookings</h1>
+  <div class="login-container">
+    <form class="login-form" id="login-form">
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" value="username123" required />
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" value="password123" required />
+      </div>
+      <button type="submit" class="book-btn login-btn">Login</button>
+    </form>
+  </div>
+
+  <script>
+    // Ensure the form exists before adding event listener
+    const form = document.getElementById("login-form");
+    if (form) {
+      form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        console.log("Form submitted"); // Debug: Check if form submission triggers
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        console.log("Username:", username, "Password:", password); // Debug: Log input values
+        if (username === "username123" && password === "password123") {
+          console.log("Login successful, setting localStorage"); // Debug: Confirm login success
+          localStorage.setItem("isLoggedIn", "true");
+          window.location.href = "index.html";
+        } else {
+          console.log("Invalid credentials"); // Debug: Log invalid attempt
+          alert("Invalid username or password. Please use username123 and password123.");
+        }
+      });
+    } else {
+      console.error("Login form not found"); // Debug: Log if form ID is missing
+    }
+  </script>
+</body>
+</html>
