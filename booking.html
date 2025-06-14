@@ -12,14 +12,20 @@
   <div class="seat-container">
     <div id="seat-grid"></div>
     <div id="price-display">Click a seat to see its price</div>
+    <div class="selected-seats" id="selected-seats"></div>
+    <div class="total-amount" id="total-amount-container" style="display: none;">
+      <h3>Total: <span id="total-amount">₹0</span></h3>
+      <button id="proceed-to-pay" class="book-btn" disabled>Proceed to Payment</button>
+    </div>
   </div>
 
   <footer class="footer">
     <p class="footer-title">Jai Cinema Bookings</p>
     <p>Customer Service: <a href="mailto:support@jaicinemabookings.com">support@jaicinemabookings.com</a> | +91-555-123-4567</p>
-    <p>© 2025 Jai Cinema Bookings. All rights reserved.</p>
+    <p> 2025 Jai Cinema Bookings. All rights reserved.</p>
   </footer>
 
+  <script src="booking.js"></script>
   <script>
     // Get theater name from URL query parameter
     const urlParams = new URLSearchParams(window.location.search);
@@ -35,19 +41,57 @@
       5: 100
     };
 
-    // Generate 50 seats (5 rows x 10 columns)
+    // Track selected seats and total amount
+    let selectedSeats = [];
+    let totalAmount = 0;
     const seatGrid = document.getElementById("seat-grid");
+    const selectedSeatsDisplay = document.getElementById("selected-seats");
+    const totalAmountDisplay = document.getElementById("total-amount");
+    const totalAmountContainer = document.getElementById("total-amount-container");
+    const proceedToPayBtn = document.getElementById("proceed-to-pay");
+
+    // Function to update selection summary
+    function updateSelectionSummary() {
+      // Update selected seats display
+      selectedSeatsDisplay.textContent = selectedSeats.map(s => s.id).join(', ');
+      
+      // Update total amount display
+      totalAmount = selectedSeats.reduce((acc, s) => acc + s.price, 0);
+      totalAmountDisplay.textContent = `₹${totalAmount}`;
+      
+      // Enable/disable proceed to pay button
+      proceedToPayBtn.disabled = selectedSeats.length === 0;
+      
+      // Show/hide total amount container
+      totalAmountContainer.style.display = selectedSeats.length > 0 ? 'block' : 'none';
+    }
+
+    // Generate 50 seats (5 rows x 10 columns)
     for (let row = 1; row <= 5; row++) {
       for (let col = 1; col <= 10; col++) {
         const seat = document.createElement("button");
         seat.className = "seat";
-        seat.textContent = `${row}-${col}`;
+        seat.textContent = `${String.fromCharCode(64 + row)}${col}`; // A1, A2, etc.
         seat.dataset.row = row;
         seat.dataset.col = col;
         seat.addEventListener("click", function() {
           const price = prices[row];
-          document.getElementById("price-display").textContent = `Seat ${row}-${col}: ₹${price}`;
-          // Highlight selected seat
+          const seatId = `${String.fromCharCode(64 + row)}${col}`;
+          const seatIndex = selectedSeats.findIndex(s => s.id === seatId);
+          
+          if (seatIndex === -1) {
+            // Add seat to selection
+            selectedSeats.push({ id: seatId, row: row, col: col, price: price });
+            seat.classList.add('selected');
+          } else {
+            // Remove seat from selection
+            selectedSeats.splice(seatIndex, 1);
+            seat.classList.remove('selected');
+          }
+          
+          // Update UI
+          updateSelectionSummary();
+          document.getElementById("price-display").textContent = `Seat ${seatId}: ₹${price}`;
           document.querySelectorAll(".seat").forEach(s => s.classList.remove("selected"));
           seat.classList.add("selected");
         });

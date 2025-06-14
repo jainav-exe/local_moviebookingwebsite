@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment - Jai Cinema Bookings</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body class="payment-body">
+  <div class="payment-container">
+    <h1 class="glowing-heading">💳 Complete Your Booking</h1>
+    
+    <div class="booking-summary">
+      <h2>Booking Summary</h2>
+      <div id="booking-details">
+        <p>Loading booking details...</p>
+      </div>
+      <div class="total-amount">
+        <h3>Total Amount: <span id="total-amount">₹0</span></h3>
+      </div>
+    </div>
+
+    <button id="pay-button" class="book-btn">Pay Now</button>
+    <button id="cancel-booking" class="cancel-btn">Cancel Booking</button>
+  </div>
+
+  <script src="payment.js"></script>
+</body>
+</html>

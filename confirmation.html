@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking Confirmation - Jai Cinema Bookings</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+  <style>
+    .confirmation-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    .confirmation-icon {
+      font-size: 4rem;
+      color: #4CAF50;
+      margin-bottom: 1rem;
+    }
+    .booking-details {
+      text-align: left;
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background: #f9f9f9;
+      border-radius: 8px;
+    }
+    .booking-details p {
+      margin: 0.8rem 0;
+      font-size: 1.1rem;
+    }
+    .highlight {
+      font-weight: bold;
+      color: #2196F3;
+    }
+  </style>
+</head>
+<body class="confirmation-body">
+  <div class="confirmation-container">
+    <div class="confirmation-icon">✓</div>
+    <h1 class="glowing-heading">Booking Confirmed!</h1>
+    <p>Thank you for booking with Jai Cinema. Your payment has been received successfully.</p>
+    
+    <div class="booking-details">
+      <h2>Booking Details</h2>
+      <p><strong>Booking ID:</strong> <span id="booking-id"></span></p>
+      <p><strong>Movie:</strong> <span id="movie"></span></p>
+      <p><strong>Theater:</strong> <span id="theater"></span></p>
+      <p><strong>Showtime:</strong> <span id="showtime"></span></p>
+      <p><strong>Seats:</strong> <span id="seats"></span></p>
+      <p><strong>Total Amount:</strong> <span id="total" class="highlight"></span></p>
+    </div>
+
+    <p>An email with your booking details has been sent to your registered email address.</p>
+    <p>Please show this confirmation at the theater ticket counter.</p>
+    
+    <button onclick="window.print()" class="book-btn" style="margin-top: 1.5rem;">Print Ticket</button>
+    <button onclick="window.location.href='index.html'" class="cancel-btn">Back to Home</button>
+  </div>
+
+  <script>
+    // Get booking details from URL
+    document.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      
+      // Set booking details
+      document.getElementById('booking-id').textContent = urlParams.get('bookingId') || 'N/A';
+      document.getElementById('movie').textContent = decodeURIComponent(urlParams.get('movie') || 'N/A');
+      document.getElementById('theater').textContent = decodeURIComponent(urlParams.get('theater') || 'N/A');
+      document.getElementById('showtime').textContent = decodeURIComponent(urlParams.get('showtime') || 'N/A');
+      document.getElementById('seats').textContent = decodeURIComponent(urlParams.get('seats') || 'N/A');
+      document.getElementById('total').textContent = `₹${urlParams.get('total') || '0'}`;
+
+      // In a real application, you would send an email here
+      // For demo purposes, we'll just log the booking
+      console.log('Booking confirmed:', {
+        bookingId: urlParams.get('bookingId'),
+        movie: urlParams.get('movie'),
+        theater: urlParams.get('theater'),
+        showtime: urlParams.get('showtime'),
+        seats: urlParams.get('seats'),
+        total: urlParams.get('total')
+      });
+    });
+  </script>
+</body>
+</html>

@@ -275,5 +275,158 @@ body {
     font-family: 'Open Sans', Arial, sans-serif;
     color: #ffd700;
     font-size: 1.2rem;
+    margin: 1rem 0;
+    min-height: 2rem;
+  }
+
+  /* Payment Page Styles */
+  .payment-body {
+    background: linear-gradient(135deg, #1a1a1a, #333);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+  }
+
+  .payment-container {
+    background: #222;
+    border: 2px solid #ffd700;
+    border-radius: 15px;
+    padding: 2rem;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  }
+
+  .booking-summary {
+    background: #2a2a2a;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    text-align: left;
+    border: 1px solid #444;
+  }
+
+  .booking-summary h2 {
+    color: #ffd700;
+    margin-top: 0;
+    border-bottom: 1px solid #444;
+    padding-bottom: 0.5rem;
+  }
+
+  .booking-summary p {
+    color: #fff;
+    margin: 0.5rem 0;
+  }
+
+  .total-amount {
+    background: #1a1a1a;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+    text-align: center;
+    border: 1px solid #ffd700;
+  }
+
+  .total-amount h3 {
+    margin: 0;
+    color: #ffd700;
+    font-size: 1.5rem;
+  }
+
+
+  .cancel-btn {
+    background: #444;
+    color: #fff;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 700;
     margin-top: 1rem;
+    width: 100%;
+    transition: background-color 0.3s;
+  }
+
+  .cancel-btn:hover {
+    background: #666;
+  }
+
+  /* Confirmation Page Styles */
+  .confirmation-body {
+    background: linear-gradient(135deg, #1a1a1a, #333);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+  }
+
+  .confirmation-container {
+    background: #222;
+    border: 2px solid #4CAF50;
+    border-radius: 15px;
+    padding: 2rem;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+  }
+
+  .confirmation-icon {
+    font-size: 4rem;
+    color: #4CAF50;
+    margin-bottom: 1rem;
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-20px);}
+    60% {transform: translateY(-10px);}
+  }
+
+  .booking-details {
+    background: #2a2a2a;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    text-align: left;
+    border: 1px solid #444;
+  }
+
+  .booking-details h2 {
+    color: #4CAF50;
+    margin-top: 0;
+    border-bottom: 1px solid #444;
+    padding-bottom: 0.5rem;
+  }
+
+  .booking-details p {
+    margin: 1rem 0;
+    color: #fff;
+  }
+
+  .highlight {
+    color: #4CAF50 !important;
+    font-weight: bold;
+  }
+
+  /* Row labels for seats */
+  .row-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffd700;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  /* Selected seats display */
+  .selected-seats {
+    margin: 1rem 0;
+    padding: 0.5rem;
+    min-height: 1.5rem;
+    color: #ffd700;
+    font-weight: bold;
   }
